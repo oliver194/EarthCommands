@@ -1,0 +1,8 @@
+#Internal usage
+config_version: "1.4"
+
+server_info:
+  start_date: "31/01/2025"
+  hosted_by: "oliver193"
+  country: "United Kingdom"
+  map_url: "https://earth.0000024.xyz"
