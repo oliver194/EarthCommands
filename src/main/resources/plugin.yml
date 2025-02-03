@@ -1,20 +1,34 @@
 name: EarthCommands
 version: '${project.version}'
 main: me.oliver193.earthCommands.EarthCommands
-api-version: '1.19'
+api-version: '1.21'
 authors: [ oliver193 ]
 description: Basic commands for the Earth Server.
 website: https://0000024.xyz/earth.php
+depend: [Vault]
 commands:
   serverinfo:
     permission: earthcommands.serverinfo
+    permission-message: "&cYou do not have permission to use this command!"
     description: View basic info about the server.
     usage: /<command>
   map:
     permission: earthcommands.map
-    description: Provides a link to the map of the server.
+    permission-message: "&cYou do not have permission to use this command!"
+    description: Provides a link to the web map of the server.
     usage: /<command>
   about:
     permission: earthcommands.about
+    permission-message: "&cYou do not have permission to use this command!"
     description: Provides information about the server.
+    usage: /<command>
+  rtp:
+    permission: earthcommands.rtp
+    permission-message: "&cYou do not have permission to use this command!"
+    description: Teleports you to a random place.
+    usage: /<command>
+  taxes:
+    permission: earthcommands.taxes
+    permission-message: "&cYou do not have permission to use this command!"
+    description: Triggers collection of taxes.
     usage: /<command>
