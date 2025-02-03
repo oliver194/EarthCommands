@@ -18,8 +18,7 @@ import java.net.HttpURLConnection;
 public final class EarthCommands extends JavaPlugin {
 
     private static Economy econ = null;
-    private static final String CURRENT_CONFIG_VERSION = "1.4";
-    private static final String REMOTE_CONFIG_URL = "https://raw.githubusercontent.com/oliver194/EarthCommands/refs/heads/master/config.yml";
+    private static final String REMOTE_CONFIG_URL = "https://raw.githubusercontent.com/oliver194/EarthCommands/refs/heads/master/src/main/resources/config.yml";
 
     @Override
     public void onEnable() {
@@ -60,7 +59,7 @@ public final class EarthCommands extends JavaPlugin {
         }
 
         if (!localConfigVersion.equals(remoteConfigVersion)) {
-            updateConfigFromRemote(localConfig, configFile);
+            updateConfigFromRemote(localConfig, configFile, remoteConfigVersion);
             getLogger().info("Config updated to version " + remoteConfigVersion);
         }
 
@@ -122,8 +121,8 @@ public final class EarthCommands extends JavaPlugin {
         }
     }
 
-    // Update the local config from the remote config
-    private void updateConfigFromRemote(FileConfiguration localConfig, File configFile) {
+    // Update the local config from the remote config and set config_version
+    private void updateConfigFromRemote(FileConfiguration localConfig, File configFile, String remoteConfigVersion) {
         try {
             // Fetch the remote config content again
             URL url = new URL(REMOTE_CONFIG_URL);
@@ -146,6 +145,11 @@ public final class EarthCommands extends JavaPlugin {
 
             // Overwrite local config with remote config
             localConfig.setDefaults(remoteConfig);
+
+            // Explicitly set the config_version to the new remote version
+            localConfig.set("config_version", remoteConfigVersion);
+
+            // Save the updated local config
             localConfig.save(configFile);
 
         } catch (Exception e) {
